@@ -17,13 +17,15 @@
 		04A7736A181C5E4000234C67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A77368181C5E4000234C67 /* Main.storyboard */; };
 		04A7736D181C5E4000234C67 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A7736C181C5E4000234C67 /* ViewController.m */; };
 		04A77370181C5E4000234C67 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A7736F181C5E4000234C67 /* MyScene.m */; };
-		04A77372181C5E4000234C67 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A77371181C5E4000234C67 /* Spaceship.png */; };
 		04A77374181C5E4000234C67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A77373181C5E4000234C67 /* Images.xcassets */; };
 		04A7737B181C5E4000234C67 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A7737A181C5E4000234C67 /* XCTest.framework */; };
 		04A7737C181C5E4000234C67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77354181C5E4000234C67 /* Foundation.framework */; };
 		04A7737D181C5E4000234C67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77358181C5E4000234C67 /* UIKit.framework */; };
 		04A77385181C5E4000234C67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04A77383181C5E4000234C67 /* InfoPlist.strings */; };
 		04A77387181C5E4000234C67 /* GameTutorialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A77386181C5E4000234C67 /* GameTutorialTests.m */; };
+		04A77392181C8D7600234C67 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A77391181C8D7600234C67 /* Spaceship.png */; };
+		04A77394181CEEB900234C67 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A77393181CEEB900234C67 /* bg.png */; };
+		04A77396181CEEC100234C67 /* red-missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A77395181CEEC100234C67 /* red-missile.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,13 +55,15 @@
 		04A7736C181C5E4000234C67 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		04A7736E181C5E4000234C67 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
 		04A7736F181C5E4000234C67 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
-		04A77371181C5E4000234C67 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		04A77373181C5E4000234C67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04A77379181C5E4000234C67 /* GameTutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameTutorialTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A7737A181C5E4000234C67 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		04A77382181C5E4000234C67 /* GameTutorialTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameTutorialTests-Info.plist"; sourceTree = "<group>"; };
 		04A77384181C5E4000234C67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		04A77386181C5E4000234C67 /* GameTutorialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTutorialTests.m; sourceTree = "<group>"; };
+		04A77391181C8D7600234C67 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
+		04A77393181CEEB900234C67 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		04A77395181CEEC100234C67 /* red-missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-missile.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 		04A7735C181C5E4000234C67 /* GameTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				04A77390181C8D7600234C67 /* Art */,
 				04A77365181C5E4000234C67 /* AppDelegate.h */,
 				04A77366181C5E4000234C67 /* AppDelegate.m */,
 				04A77368181C5E4000234C67 /* Main.storyboard */,
@@ -128,7 +133,6 @@
 				04A7736C181C5E4000234C67 /* ViewController.m */,
 				04A7736E181C5E4000234C67 /* MyScene.h */,
 				04A7736F181C5E4000234C67 /* MyScene.m */,
-				04A77371181C5E4000234C67 /* Spaceship.png */,
 				04A77373181C5E4000234C67 /* Images.xcassets */,
 				04A7735D181C5E4000234C67 /* Supporting Files */,
 			);
@@ -162,6 +166,16 @@
 				04A77383181C5E4000234C67 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04A77390181C8D7600234C67 /* Art */ = {
+			isa = PBXGroup;
+			children = (
+				04A77395181CEEC100234C67 /* red-missile.png */,
+				04A77393181CEEB900234C67 /* bg.png */,
+				04A77391181C8D7600234C67 /* Spaceship.png */,
+			);
+			path = Art;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,9 +254,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A77396181CEEC100234C67 /* red-missile.png in Resources */,
+				04A77394181CEEB900234C67 /* bg.png in Resources */,
+				04A77392181C8D7600234C67 /* Spaceship.png in Resources */,
 				04A77361181C5E4000234C67 /* InfoPlist.strings in Resources */,
 				04A77374181C5E4000234C67 /* Images.xcassets in Resources */,
-				04A77372181C5E4000234C67 /* Spaceship.png in Resources */,
 				04A7736A181C5E4000234C67 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
