@@ -7,11 +7,13 @@
 //
 
 #import "MyScene.h"
+#import "GameOverScene.h"
 
 static const uint32_t shipCategory =  0x1 << 0;
 static const uint32_t obstacleCategory =  0x1 << 1;
 
 static const float BG_VELOCITY = 100.0;
+static const float OBJECT_VELOCITY = 160.0;
 
 static inline CGPoint CGPointAdd(const CGPoint a, const CGPoint b)
 {
@@ -32,6 +34,7 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
 
     NSTimeInterval _lastUpdateTime;
     NSTimeInterval _dt;
+    NSTimeInterval _lastMissileAdded;
 
 }
 
@@ -46,6 +49,7 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
         self.physicsWorld.contactDelegate = self;
         
     }
+
     return self;
 }
 
@@ -71,6 +75,30 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
 
         [self addChild:ship];
 }
+
+-(void)addMissile
+{
+    //initalizing spaceship node
+    SKSpriteNode *missile;
+    missile = [SKSpriteNode spriteNodeWithImageNamed:@"red-missile.png"];
+    [missile setScale:0.15];
+    
+    //Adding SpriteKit physicsBody for collision detection
+    missile.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:missile.size];
+    missile.physicsBody.categoryBitMask = obstacleCategory;
+    missile.physicsBody.dynamic = YES;
+    missile.physicsBody.contactTestBitMask = shipCategory;
+    missile.physicsBody.collisionBitMask = 0;
+    missile.physicsBody.usesPreciseCollisionDetection = YES;
+    missile.name = @"missile";
+    
+    //selecting random y position for missile
+    int r = arc4random() % 300;
+    missile.position = CGPointMake(self.frame.size.width + 20,r);
+
+    [self addChild:missile];
+}
+
 
 
 
@@ -119,6 +147,25 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
      }];
 }
 
+- (void)moveObstacle
+{
+    NSArray *nodes = self.children;//1
+    
+    for(SKNode * node in nodes){
+        if (![node.name  isEqual: @"bg"] && ![node.name  isEqual: @"ship"]) {
+            SKSpriteNode *ob = (SKSpriteNode *) node;
+            CGPoint obVelocity = CGPointMake(-OBJECT_VELOCITY, 0);
+            CGPoint amtToMove = CGPointMultiplyScalar(obVelocity,_dt);
+            
+            ob.position = CGPointAdd(ob.position, amtToMove);
+            if(ob.position.x < -100)
+            {
+                [ob removeFromParent];
+            }
+        }
+    }
+}
+
 -(void)update:(CFTimeInterval)currentTime {
     
     if (_lastUpdateTime)
@@ -131,9 +178,43 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
     }
     _lastUpdateTime = currentTime;
     
+    if( currentTime - _lastMissileAdded > 1)
+    {
+        _lastMissileAdded = currentTime + 1;
+            [self addMissile];
+    }
+
+    
     [self moveBg];
+    [self moveObstacle];
+
 }
 
+
+- (void)didBeginContact:(SKPhysicsContact *)contact
+{
+    SKPhysicsBody *firstBody, *secondBody;
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
+    {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    }
+    else
+    {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    
+    if ((firstBody.categoryBitMask & shipCategory) != 0 &&
+        (secondBody.categoryBitMask & obstacleCategory) != 0)
+    {
+        [ship removeFromParent];
+        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+        SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size];
+        [self.view presentScene:gameOverScene transition: reveal];
+
+    }
+}
 
 
 @end

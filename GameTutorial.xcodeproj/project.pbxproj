@@ -26,6 +26,7 @@
 		04A77392181C8D7600234C67 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A77391181C8D7600234C67 /* Spaceship.png */; };
 		04A77394181CEEB900234C67 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A77393181CEEB900234C67 /* bg.png */; };
 		04A77396181CEEC100234C67 /* red-missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A77395181CEEC100234C67 /* red-missile.png */; };
+		04B4FCD01834818B006D8DDC /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B4FCCF1834818B006D8DDC /* GameOverScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		04A77391181C8D7600234C67 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		04A77393181CEEB900234C67 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		04A77395181CEEC100234C67 /* red-missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-missile.png"; sourceTree = "<group>"; };
+		04B4FCCE1834818B006D8DDC /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		04B4FCCF1834818B006D8DDC /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,8 @@
 				04A7736F181C5E4000234C67 /* MyScene.m */,
 				04A77373181C5E4000234C67 /* Images.xcassets */,
 				04A7735D181C5E4000234C67 /* Supporting Files */,
+				04B4FCCE1834818B006D8DDC /* GameOverScene.h */,
+				04B4FCCF1834818B006D8DDC /* GameOverScene.m */,
 			);
 			path = GameTutorial;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B4FCD01834818B006D8DDC /* GameOverScene.m in Sources */,
 				04A77370181C5E4000234C67 /* MyScene.m in Sources */,
 				04A7736D181C5E4000234C67 /* ViewController.m in Sources */,
 				04A77367181C5E4000234C67 /* AppDelegate.m in Sources */,
@@ -492,6 +498,7 @@
 				04A7738C181C5E4000234C67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04A7738D181C5E4000234C67 /* Build configuration list for PBXNativeTarget "GameTutorialTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +507,7 @@
 				04A7738F181C5E4000234C67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
