@@ -9,7 +9,6 @@
 #import "GameOverScene.h"
 #import "MyScene.h"
 #import <Parse/Parse.h>
-#import "ScoreViewController.h"
 
 @implementation GameOverScene
 -(id)initWithSize:(CGSize)size score: (NSInteger)player_score{
