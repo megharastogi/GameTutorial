@@ -8,9 +8,11 @@
 
 #import "GameOverScene.h"
 #import "MyScene.h"
+#import <Parse/Parse.h>
+#import "ScoreViewController.h"
 
 @implementation GameOverScene
--(id)initWithSize:(CGSize)size {
+-(id)initWithSize:(CGSize)size score: (NSInteger)player_score{
     if (self = [super initWithSize:size]) {
         
         // 1
@@ -40,6 +42,59 @@
         [self addChild:retryButton];
 
         
+        UIDevice * currentDevice = [UIDevice currentDevice];
+        NSString *deviceIDString = [currentDevice.identifierForVendor UUIDString];
+
+        NSString * playerscoremsg = [NSString stringWithFormat:@"Player Score: %ld",(long)player_score];
+
+        SKLabelNode *playerscore = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        playerscore.text = playerscoremsg;
+        playerscore.fontColor = [SKColor blackColor];
+        playerscore.position = CGPointMake(self.size.width/2, 250);
+        playerscore.name = @"Player Score";
+        [playerscore setScale:.5];
+        
+        [self addChild:playerscore];
+        
+
+        NSNumber *playerScoreNum = [NSNumber numberWithInt:player_score];
+
+        PFQuery *query = [PFQuery queryWithClassName:@"PlayerScore"];
+        [query whereKey:@"user_id" equalTo:deviceIDString];
+        [query orderByDescending:@"score"];
+        
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *scoreArray, NSError *error) {
+            
+            
+            NSNumber* hightestScore = [scoreArray.firstObject objectForKey:@"score"];
+            NSLog(@"highest score %@ devise %@",hightestScore, deviceIDString);
+            
+            if (hightestScore < playerScoreNum){
+                hightestScore = playerScoreNum;
+            }
+            NSString * highscoremsg = [NSString stringWithFormat:@"Highest Score: %@",hightestScore];
+            
+            SKLabelNode *highscore = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+            highscore.text = highscoremsg;
+            highscore.fontColor = [SKColor greenColor];
+            highscore.position = CGPointMake(self.size.width/2, 200);
+            [highscore setScale:.5];
+            [self addChild:highscore];
+
+        }];
+
+
+        
+        PFObject *scoreObject = [PFObject objectWithClassName:@"PlayerScore"];
+        [scoreObject setObject:deviceIDString forKey:@"user_id"];
+
+        [scoreObject setObject:playerScoreNum forKey:@"score"];
+
+        [scoreObject saveInBackground];
+        
+        
+        
     }
     return self;
 }
@@ -59,5 +114,6 @@
         [self.view presentScene:scene transition: reveal];
 
     }
+    
 }
 @end
