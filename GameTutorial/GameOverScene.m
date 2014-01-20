@@ -11,16 +11,15 @@
 #import <Parse/Parse.h>
 
 @implementation GameOverScene
+
 -(id)initWithSize:(CGSize)size score: (NSInteger)player_score{
     if (self = [super initWithSize:size]) {
         
-        // 1
         self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
         
-        // 2
         NSString * message;
         message = @"Game Over";
-        // 3
+
         SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         label.text = message;
         label.fontSize = 40;
@@ -41,8 +40,6 @@
         [self addChild:retryButton];
 
         
-        UIDevice * currentDevice = [UIDevice currentDevice];
-        NSString *deviceIDString = [currentDevice.identifierForVendor UUIDString];
 
         NSString * playerscoremsg = [NSString stringWithFormat:@"Player Score: %ld",(long)player_score];
 
@@ -55,12 +52,15 @@
         
         [self addChild:playerscore];
         
+        UIDevice * currentDevice = [UIDevice currentDevice];
+        NSString *deviceIDString = [currentDevice.identifierForVendor UUIDString]; //getting unique id for the user
 
-        NSNumber *playerScoreNum = [NSNumber numberWithInt:player_score];
+        
+        NSNumber *playerScoreNum = [NSNumber numberWithInt:player_score]; //converting score into NSNumber format in which Parse expect the score
 
         PFQuery *query = [PFQuery queryWithClassName:@"PlayerScore"];
         [query whereKey:@"user_id" equalTo:deviceIDString];
-        [query orderByDescending:@"score"];
+        [query orderByDescending:@"score"]; //Sorting the score so we have highest score on the top
         
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *scoreArray, NSError *error) {
@@ -71,6 +71,7 @@
             
             if (hightestScore < playerScoreNum){
                 hightestScore = playerScoreNum;
+                NSLog(@"current score is highest");
             }
             NSString * highscoremsg = [NSString stringWithFormat:@"Highest Score: %@",hightestScore];
             
@@ -85,7 +86,7 @@
 
 
         
-        PFObject *scoreObject = [PFObject objectWithClassName:@"PlayerScore"];
+       PFObject *scoreObject = [PFObject objectWithClassName:@"PlayerScore"];
         [scoreObject setObject:deviceIDString forKey:@"user_id"];
 
         [scoreObject setObject:playerScoreNum forKey:@"score"];
